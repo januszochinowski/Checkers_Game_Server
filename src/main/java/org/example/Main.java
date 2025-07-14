@@ -28,6 +28,7 @@ public class Main {
         }
     }
 
+    // when client login to server
     private static void addClient(Socket s) {
         if (waitingClients[0] == null) {
             waitingClients[0] = s;
@@ -44,6 +45,7 @@ public class Main {
     }
 
 
+    // game between two players
     private static class Room extends Thread {
         private Socket Player1;
         private Socket Player2;
