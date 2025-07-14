@@ -53,8 +53,8 @@ public class Main {
         private BufferedReader inPlayer2;
         private PrintWriter outPlayer1;
         private PrintWriter outPlayer2;
-        int player1PawnNumber = 12;
-        int player2PawnNumber = 12;
+        int player1PawnNumber = 2;
+        int player2PawnNumber = 2;
 
         public Room(Socket[] ClientsList){
             Player1 = ClientsList[0];
@@ -77,10 +77,15 @@ public class Main {
                     String message = inPlayer1.readLine();
                     if(message.length() == 6) {
                         player2PawnNumber--;
+
+                        //when player's 2 pawn number is 0 player 1 win
                         if(player2PawnNumber <=   0) {
                             outPlayer1.println("You win!");
                             outPlayer2.println("You lost the game");
                             System.out.println("Player Win!");
+
+                            Player1.close();
+                            Player2.close();
                             break;
                         }
                     }
@@ -92,10 +97,15 @@ public class Main {
                     if(message.length() == 6) {
                         player1PawnNumber--;
                         System.out.println("Odejmuje");
+
+                        // when player's 1 pawn number is 0 player 2 win
                         if(player1PawnNumber <=  0) {
                             outPlayer1.println("You lost the game");
                             outPlayer2.println("You win!");
                             System.out.println("Player Win!");
+
+                            Player1.close();
+                            Player2.close();
                             break;
                         }
                     }
